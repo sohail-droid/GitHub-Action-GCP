@@ -1,0 +1,26 @@
+name: Authenticate and Deploy to GCP
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: 'projects/training-2024-batch/locations/global/workloadIdentityPools/my-github-pool/providers/github-provider'
+          service_account: 'my-packer-sa-86@training-2024-batch.iam.gserviceaccount.com'
+
+      - name: Run gcloud command
+        run: gcloud projects list
