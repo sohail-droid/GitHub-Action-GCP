@@ -17,7 +17,7 @@ source "googlecompute" "default" {
   subnetwork = "projects/training-2024-batch/regions/us-central1/subnetworks/default"
 
   source_image_family = "ubuntu-2204-lts"
-  source_image_project = "ubuntu-os-cloud"
+  // source_image_project = "ubuntu-os-cloud"
   ssh_username = "packer"
 }
 
