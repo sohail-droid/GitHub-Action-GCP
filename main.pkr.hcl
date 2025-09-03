@@ -11,7 +11,8 @@ source "googlecompute" "default" {
   project_id      = "training-2024-batch"
   zone            = "us-central1-a"
   source_image    = "ubuntu-2204-lts"
-  image_name      = "smd-myapp-${timestamp()}"
+  image_name      = "smd-myapp-${formatdate("YYYYMMDDHHmmss", timestamp())}"
+  ssh_username    = "ubuntu"
 }
 
 build {
@@ -26,3 +27,4 @@ build {
     ]
   }
 }
+
