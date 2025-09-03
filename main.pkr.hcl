@@ -8,13 +8,13 @@ packer {
 }
 
 source "googlecompute" "default" {
-  project_id            = "training-2024-batch"
-  zone                  = "us-central1-a"
-  source_image_family   = "ubuntu-2204-lts"
-  source_image_project  = "ubuntu-os-cloud"  # ✅ string, not list
-  image_name            = "smd-myapp-${formatdate("YYYYMMDDHHmmss", timestamp())}"
-  ssh_username          = "ubuntu"
+  project_id      = "training-2024-batch"
+  zone            = "us-central1-a"
+  source_image    = "projects/ubuntu-os-cloud/global/images/family/ubuntu-2204-lts"
+  image_name      = "smd-myapp-${formatdate("YYYYMMDDHHmmss", timestamp())}"
+  ssh_username    = "ubuntu"
 }
+
 
 
 build {
