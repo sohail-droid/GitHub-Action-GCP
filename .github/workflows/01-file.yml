@@ -24,6 +24,9 @@
 
 #       - name: Run gcloud command
 #         run: gcloud projects list
+
+
+
 name: Build VM Image
 
 on:
@@ -31,7 +34,7 @@ on:
     branches:
       - main
 
-permissions:  # ✅ Required for OIDC token injection
+permissions:
   contents: read
   id-token: write
 
@@ -51,6 +54,8 @@ jobs:
           workload_identity_provider: 'projects/832520843662/locations/global/workloadIdentityPools/my-github-pool/providers/github-provider'
           service_account: 'my-packer-sa-86@training-2024-batch.iam.gserviceaccount.com'
 
-      - name: Build Image
-        run: packer build packer-template.json
+      - name: Initialize Packer plugins
+        run: packer init .
 
+      - name: Build Image
+        run: packer build main.pkr.hcl
