@@ -13,9 +13,11 @@ source "googlecompute" "default" {
   source_image_family  = "ubuntu-2204-lts"
   image_name           = "smd-myapp-${formatdate("YYYYMMDDHHmmss", timestamp())}"
   ssh_username         = "ubuntu"
+
+  # ✅ Add network and subnet
+  network              = "projects/training-2024-batch/global/networks/default"
+  subnetwork           = "projects/training-2024-batch/regions/us-central1/subnetworks/default"
 }
-
-
 
 
 
