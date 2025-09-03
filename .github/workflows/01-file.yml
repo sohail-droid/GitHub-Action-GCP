@@ -25,22 +25,32 @@
 #       - name: Run gcloud command
 #         run: gcloud projects list
 name: Build VM Image
+
 on:
   push:
     branches:
       - main
+
+permissions:  # ✅ Required for OIDC token injection
+  contents: read
+  id-token: write
+
 jobs:
   build-image:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Set up Packer
         uses: hashicorp/setup-packer@v2
+
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: 'projects/832520843662/locations/global/workloadIdentityPools/my-github-pool/providers/github-provider'
           service_account: 'my-packer-sa-86@training-2024-batch.iam.gserviceaccount.com'
+
       - name: Build Image
         run: packer build packer-template.json
+
