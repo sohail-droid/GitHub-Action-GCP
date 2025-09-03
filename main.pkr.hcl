@@ -8,21 +8,14 @@ packer {
 }
 
 source "googlecompute" "default" {
-  project_id  = "training-2024-batch"
-  machine_type = "e2-standard-2"
-  zone        = "us-central1-a"
-
-  # ✅ Use default network and subnet
-  network    = "projects/training-2024-batch/global/networks/default"
-  subnetwork = "projects/training-2024-batch/regions/us-central1/subnetworks/default"
-
+  project_id         = "training-2024-batch"
+  machine_type       = "e2-standard-2"
+  zone               = "us-central1-a"
+  network            = "projects/training-2024-batch/global/networks/default"
+  subnetwork         = "projects/training-2024-batch/regions/us-central1/subnetworks/default"
   source_image_family = "ubuntu-2204-lts"
-  // source_image_project = "ubuntu-os-cloud"
-  ssh_username = "packer"
+  ssh_username       = "ubuntu" 
 }
-
-
-
 
 build {
   sources = ["source.googlecompute.default"]
@@ -36,4 +29,3 @@ build {
     ]
   }
 }
-
