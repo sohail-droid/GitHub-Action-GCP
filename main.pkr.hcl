@@ -14,7 +14,8 @@ source "googlecompute" "default" {
   network            = "projects/training-2024-batch/global/networks/default"
   subnetwork         = "projects/training-2024-batch/regions/us-central1/subnetworks/default"
   source_image_family = "ubuntu-2204-lts"
-  ssh_username       = "ubuntu" 
+  ssh_username       = "ubuntu"
+  tags = ["allow-ssh"]
 }
 
 build {
